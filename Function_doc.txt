@@ -1,0 +1,11 @@
+=========================
+=== Function Documents ==
+=========================
+
+getAllFrom( $field, $table, $where = NULL, $and = NULL, $orderfield , $ordering = "DESC")
+
+$field ==>  * or any coulmn from table
+$table ==> the table i get it the data
+$where ==> the condition or can be empty
+$orderfield ==> the coulmn through order the items
+$ordering ==> the way to choose ordering [DESC OR ASC]
