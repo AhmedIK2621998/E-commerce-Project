@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2020 at 11:01 AM
+-- Generation Time: Jul 27, 2020 at 11:54 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -38,6 +38,14 @@ CREATE TABLE `categories` (
   `Allow_Ads` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`ID`, `Name`, `Description`, `parent`, `Ordering`, `Visibility`, `Allow_Comment`, `Allow_Ads`) VALUES
+(6, 'playstaion', 'PlayStaion 2020 Games', 0, 1, 0, 0, 0),
+(7, 'furnture', 'good furnture', 6, 2, 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +60,14 @@ CREATE TABLE `comments` (
   `item_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`c_id`, `comment`, `status`, `comment_date`, `item_id`, `user_id`) VALUES
+(1, 'very good\r\n', 1, '2020-07-28', 24, 8),
+(39, 'alhamdollelah', 0, '2020-07-27', 23, 8);
 
 -- --------------------------------------------------------
 
@@ -71,8 +87,17 @@ CREATE TABLE `items` (
   `Rating` smallint(6) NOT NULL,
   `Approve` tinyint(4) NOT NULL DEFAULT 0,
   `Cat_ID` int(11) NOT NULL,
-  `Member_ID` int(11) NOT NULL
+  `Member_ID` int(11) NOT NULL,
+  `tags` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`Item_ID`, `Name`, `Description`, `Price`, `Add_Date`, `Countery_Made`, `Image`, `Status`, `Rating`, `Approve`, `Cat_ID`, `Member_ID`, `tags`) VALUES
+(23, 'Cars', 'PMW Cars Is a Good Car In World ', '$80000', '2020-07-27', 'Germany', '', '1', 0, 1, 6, 9, 'mossab, car, BMW,'),
+(24, 'Toyes', 'This Is Toy For Kids', '900', '2020-07-27', 'USA', '', '3', 0, 1, 6, 8, 'Online,RPG,Game');
 
 -- --------------------------------------------------------
 
@@ -89,8 +114,17 @@ CREATE TABLE `users` (
   `GroupID` int(11) NOT NULL DEFAULT 0 COMMENT 'Identify User Group',
   `TrustStatus` int(11) NOT NULL DEFAULT 0 COMMENT 'seller Rank',
   `RegStatus` int(11) NOT NULL DEFAULT 0 COMMENT 'User Approval',
-  `Date` date NOT NULL
+  `Date` date NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`UserID`, `UserName`, `Password`, `Email`, `FullName`, `GroupID`, `TrustStatus`, `RegStatus`, `Date`, `avatar`) VALUES
+(8, 'Ahmed', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'ahmedibrahim2621998@gmail.com', '', 1, 1, 1, '2020-07-27', NULL),
+(9, 'Mossab15', 'b3c0730cf3f50613e40561e67c871fdb92820cf9', 'mossab@gmail.com', 'Mossab Ramadan', 0, 0, 1, '2020-07-27', '90544814_٢٠٨٠٤٢٢_١٥٤٦٣٢.jpg');
 
 --
 -- Indexes for dumped tables
@@ -134,25 +168,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `Item_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Item_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'To Identify User', AUTO_INCREMENT=8;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'To Identify User', AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
